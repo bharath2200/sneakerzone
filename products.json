@@ -1,0 +1,16 @@
+[
+    {
+        "id": "airmax1",
+        "name": "Nike Air Max 1",
+        "price": "₹7,499",
+        "image": "images/deal1.png",
+        "description": "Premium sneaker with classic style."
+    },
+    {
+        "id": "ultraboost",
+        "name": "Adidas Ultraboost",
+        "price": "₹9,999",
+        "image": "images/deal2.png",
+        "description": "Responsive running shoes for all-day comfort."
+    }
+]
