@@ -1,16 +1,16 @@
 [
-    {
-        "id": "airmax1",
-        "name": "Nike Air Max 1",
-        "price": "₹7,499",
-        "image": "images/deal1.png",
-        "description": "Premium sneaker with classic style."
-    },
-    {
-        "id": "ultraboost",
-        "name": "Adidas Ultraboost",
-        "price": "₹9,999",
-        "image": "images/deal2.png",
-        "description": "Responsive running shoes for all-day comfort."
-    }
+  {
+    "id": 1,
+    "name": "Men’s Sneaker – Alpha",
+    "image": "images/deal1.png",
+    "description": "Comfortable black sneaker for men",
+    "price": 1299
+  },
+  {
+    "id": 2,
+    "name": "Women’s Sneaker – Spark",
+    "image": "images/deal2.png",
+    "description": "White and pink sneaker for women",
+    "price": 1399
+  }
 ]
