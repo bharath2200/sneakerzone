@@ -1,14 +1,145 @@
+**index.html**
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CLOEVEE Fashions</title>
-    <link rel="stylesheet" href="css/style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLOEVEE Fashions</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header><h1>CLOEVEE Fashions</h1></header>
-    <section id="products"></section>
-    <script src="js/main.js"></script>
+  <header>
+    <h1>CLOEVEE Fashions</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Exclusive Deals</h2>
+    <div class="products" id="exclusive-deals"></div>
+
+    <h2>Categories</h2>
+    <div class="categories">
+      <a href="#" onclick="filterCategory('Perfume')">Perfume 10hrs</a>
+      <a href="#" onclick="filterCategory('Women')">Women’s Sneakers</a>
+      <a href="#" onclick="filterCategory('Men')">Men’s Sneakers</a>
+      <a href="#" onclick="filterCategory('Flipflops')">Flipflops/Crocs</a>
+      <a href="#" onclick="filterCategory('Men Watch')">Men’s Watches</a>
+      <a href="#" onclick="filterCategory('Women Watch')">Women’s Watches</a>
+    </div>
+
+    <h2>Just Arrived</h2>
+    <div class="products" id="just-arrived"></div>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
+```
+
+**product.html**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>CLOEVEE Fashions</h1>
+    <nav><a href="index.html">Home</a></nav>
+  </header>
+  <main id="product-details"></main>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    fetch("products.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const product = data.find((p) => p.id == id);
+        if (product) {
+          document.getElementById("product-details").innerHTML = `
+            <div class="product-full">
+              <img src="${product.image}" alt="${product.name}" />
+              <h2>${product.name}</h2>
+              <p>Category: ${product.category}</p>
+              <p>Price: ₹${product.price}</p>
+              <a class="buy-btn" href="https://wa.me/?text=I want to buy ${product.name} for ₹${product.price}. Image: ${window.location.origin}/${product.image}" target="_blank">Buy Now on WhatsApp</a>
+            </div>
+          `;
+        }
+      });
+  </script>
+</body>
+</html>
+```
+
+**admin.html**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Admin Panel</h1>
+    <nav><a href="index.html">Home</a></nav>
+  </header>
+  <main>
+    <h2>Add New Product</h2>
+    <form id="product-form">
+      <input type="text" id="name" placeholder="Product Name" required />
+      <input type="text" id="category" placeholder="Category" required />
+      <input type="text" id="price" placeholder="Price" required />
+      <input type="text" id="image" placeholder="Image path (images/deal1.png)" required />
+      <button type="submit">Add Product</button>
+    </form>
+  </main>
+  <script>
+    document.getElementById("product-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const product = {
+        id: Date.now(),
+        name: document.getElementById("name").value,
+        category: document.getElementById("category").value,
+        price: document.getElementById("price").value,
+        image: document.getElementById("image").value,
+      };
+      alert("Product added locally. Please manually add this to products.json:");
+      console.log(JSON.stringify(product));
+    });
+  </script>
+</body>
+</html>
+```
+
+**products.json**
+```json
+[
+  {
+    "id": 101,
+    "name": "Limited Edition Sneaker",
+    "category": "Men",
+    "price": 3499,
+    "image": "images/deal1.png"
+  },
+  {
+    "id": 102,
+    "name": "Stylish Women Crocs",
+    "category": "Women",
+    "price": 2199,
+    "image": "images/deal2.png"
+  }
+]
+```
+
+Let me know if you want `style.css` and `script.js` too. They're important for design and dynamic loading. Want them now?
